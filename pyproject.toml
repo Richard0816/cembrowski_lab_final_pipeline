@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calcium_core"
+version = "0.1.0"
+description = "Library for 2-photon calcium imaging analysis (Suite2p-based)."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "psutil",
+    "openpyxl",
+]
+
+[project.optional-dependencies]
+viz = ["matplotlib", "seaborn"]
+ml = ["torch"]
+gpu = ["cupy-cuda12x"]
+all = ["matplotlib", "seaborn", "torch", "scikit-learn", "umap-learn"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+calcium-core-pipeline = "calcium_core.pipeline.runner:run_pipeline"
